@@ -3,7 +3,7 @@ package com.makaia.back4.JpaMySql.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table
+@Table(name = "Comentarios")
 public class Comentario {
 
     @Id
@@ -14,8 +14,39 @@ public class Comentario {
     private String contenido;
 
     @ManyToOne(optional = false)
+    @JoinColumn(name = "usuario", nullable = false)
     Usuario usuario;
 
     @ManyToOne(optional = false)
+    @JoinColumn(name = "publicacion", nullable = false)
     Publicacion publicacion;
+
+    public Comentario(String contenido) {
+        this.contenido = contenido;
+    }
+
+    public String getContenido() {
+        return contenido;
+    }
+
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Publicacion getPublicacion() {
+        return publicacion;
+    }
+
+    public void setPublicacion(Publicacion publicacion) {
+        this.publicacion = publicacion;
+    }
+
 }
